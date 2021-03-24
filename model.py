@@ -9,7 +9,7 @@ def plot_predictions(train_data, train_labels,  test_data, test_labels,  predict
   """
   Plots training data, test data and compares predictions.
   """
-  plt.figure(figsize=(10, 7))
+  plt.figure(figsize=(6, 5))
   # Plot training data in blue
   plt.scatter(train_data, train_labels, c="b", label="Training data")
   # Plot test data in green
@@ -84,7 +84,7 @@ model.compile(loss = tf.keras.losses.mae,
               metrics = ['mae'])
 
 # Fit the model
-model.fit(X_train, y_train, epochs=50)
+model.fit(X_train, y_train, epochs=100)
 
 
 # Make and plot predictions for model_1
