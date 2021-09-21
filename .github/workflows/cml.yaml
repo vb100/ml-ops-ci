@@ -1,27 +1,22 @@
-name: mlops-example-tensorflow-regression
+name: mlops-exaple-tensorflow-regression
 on: [push]
 jobs:
   run:
-    runs-on: ubuntu-latest
-    # optionally use a convenient Ubuntu LTS + DVC + CML image
-    container: docker://ghcr.io/iterative/cml:0-dvc2-base1
+    runs-on: [ubuntu-latest]
+    container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
-      # may need to setup NodeJS & Python3 on e.g. self-hosted
-      # - uses: actions/setup-node@v2
-      #   with:
-      #     node-version: '12'
-      # - uses: actions/setup-python@v2
-      #   with:
-      #     python-version: '3.x'
-      - uses: iterative/setup-cml@v1
-      - name: Train model
+      - name: 'Train my model'
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # Your ML workflow goes here
           pip install -r requirements.txt
           python model.py
           
-          echo "##Model Metrics" > report.md
-          cat requirements.txt >> report.md
+          echo "## Model Metrics" > report.md
+          cat metrics.txt >> report.md
           
           cml-send-comment report.md
+          
+          
