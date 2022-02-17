@@ -70,7 +70,7 @@ output_shape = y[0].shape
 
 
 # Set random seed
-tf.random.set_seed(42)
+tf.random.set_seed(1989)
 
 # Create a model using the Sequential API
 model = tf.keras.Sequential([
