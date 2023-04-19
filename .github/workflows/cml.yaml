@@ -3,24 +3,24 @@ on: [push]
 jobs:
   run:
     runs-on: [ubuntu-latest]
-    container: docker://dvcorg/cml-py3:latest
     steps:
-      - uses: actions/checkout@v2
-      - name: 'Train my model'
-        env:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-        run: |
+    - uses: actions/checkout@v2
+    - uses: iterative/setup-cml@v1
+    - name: 'Train my model'
+      env:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+      run: |
 
-          # Your ML workflow goes here
-          pip install -r requirements.txt
-          python model.py
-          
-          echo "## Model Metrics" > report.md
-          cat metrics.txt >> report.md
-          
-          echo "\n## Model Performance" >> report.md
-          echo "Model performance metrics are on the plot below." >> report.md
-          
-          cml-publish model_results.png --md >> report.md
-          
-          cml-send-comment report.md
+        # Your ML workflow goes here
+        pip install -r requirements.txt
+        python model.py
+
+        echo "## Model Metrics" > report.md
+        cat metrics.txt >> report.md
+
+        echo "\n## Model Performance" >> report.md
+        echo "Model performance metrics are on the plot below." >> report.md
+
+        cml-publish model_results.png --md >> report.md
+
+        cml-send-comment report.md
