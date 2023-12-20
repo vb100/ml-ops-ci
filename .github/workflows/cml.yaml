@@ -8,8 +8,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: 'Install dependencies'
-        env:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           pip install -r requirements.txt
 
@@ -26,6 +24,8 @@ jobs:
           echo "Model performance metrics are on the plot below." >> report.md
 
       - name: 'Show results'
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cml-publish model_results.png --md >> report.md
           cml-send-comment report.md
