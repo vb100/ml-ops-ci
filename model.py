@@ -55,7 +55,7 @@ y = np.arange(-90, 110, 4)
 
 
 # Split data into train and test sets
-N = 25
+N = 20
 X_train = X[:N] # first 40 examples (80% of data)
 y_train = y[:N]
 
