@@ -55,11 +55,12 @@ y = np.arange(-90, 110, 4)
 
 
 # Split data into train and test sets
-X_train = X[:40] # first 40 examples (80% of data)
-y_train = y[:40]
+N = 25
+X_train = X[:N] # first 40 examples (80% of data)
+y_train = y[:N]
 
-X_test = X[40:] # last 10 examples (20% of data)
-y_test = y[40:]
+X_test = X[N:] # last 10 examples (20% of data)
+y_test = y[N:]
 
 
 # Take a single example of X
@@ -70,7 +71,7 @@ output_shape = y[0].shape
 
 
 # Set random seed
-tf.random.set_seed(42)
+tf.random.set_seed(1989)
 
 # Create a model using the Sequential API
 model = tf.keras.Sequential([
